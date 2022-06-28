@@ -1,6 +1,11 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
@@ -12,17 +17,18 @@ import { MvtStkDto } from '../models/mvt-stk-dto';
   providedIn: 'root',
 })
 class MvtstkService extends __BaseService {
-  static readonly correctionStockNegPath = '/gestiondestock/v1/mvtstk/correctionneg';
-  static readonly correctionStockPosPath = '/gestiondestock/v1/mvtstk/correctionpos';
-  static readonly entreeStockPath = '/gestiondestock/v1/mvtstk/entree';
-  static readonly mvtStkArticlePath = '/gestiondestock/v1/mvtstk/filter/article/{idArticle}';
-  static readonly sortieStockPath = '/gestiondestock/v1/mvtstk/sortie';
-  static readonly stockReelArticlePath = '/gestiondestock/v1/mvtstk/stockreel/{idArticle}';
+  static readonly correctionStockNegPath =
+    '/stockmanagement/v1/mvtstk/correctionneg';
+  static readonly correctionStockPosPath =
+    '/stockmanagement/v1/mvtstk/correctionpos';
+  static readonly entreeStockPath = '/stockmanagement/v1/mvtstk/entree';
+  static readonly mvtStkArticlePath =
+    '/stockmanagement/v1/mvtstk/filter/article/{idArticle}';
+  static readonly sortieStockPath = '/stockmanagement/v1/mvtstk/sortie';
+  static readonly stockReelArticlePath =
+    '/stockmanagement/v1/mvtstk/stockreel/{idArticle}';
 
-  constructor(
-    config: __Configuration,
-    http: HttpClient
-  ) {
+  constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
   }
 
@@ -30,23 +36,26 @@ class MvtstkService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  correctionStockNegResponse(body?: MvtStkDto): __Observable<__StrictHttpResponse<MvtStkDto>> {
+  correctionStockNegResponse(
+    body?: MvtStkDto
+  ): __Observable<__StrictHttpResponse<MvtStkDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/correctionneg`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/correctionneg`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<MvtStkDto>;
       })
@@ -58,7 +67,7 @@ class MvtstkService extends __BaseService {
    */
   correctionStockNeg(body?: MvtStkDto): __Observable<MvtStkDto> {
     return this.correctionStockNegResponse(body).pipe(
-      __map(_r => _r.body as MvtStkDto)
+      __map((_r) => _r.body as MvtStkDto)
     );
   }
 
@@ -66,23 +75,26 @@ class MvtstkService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  correctionStockPosResponse(body?: MvtStkDto): __Observable<__StrictHttpResponse<MvtStkDto>> {
+  correctionStockPosResponse(
+    body?: MvtStkDto
+  ): __Observable<__StrictHttpResponse<MvtStkDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/correctionpos`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/correctionpos`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<MvtStkDto>;
       })
@@ -94,7 +106,7 @@ class MvtstkService extends __BaseService {
    */
   correctionStockPos(body?: MvtStkDto): __Observable<MvtStkDto> {
     return this.correctionStockPosResponse(body).pipe(
-      __map(_r => _r.body as MvtStkDto)
+      __map((_r) => _r.body as MvtStkDto)
     );
   }
 
@@ -102,23 +114,26 @@ class MvtstkService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  entreeStockResponse(body?: MvtStkDto): __Observable<__StrictHttpResponse<MvtStkDto>> {
+  entreeStockResponse(
+    body?: MvtStkDto
+  ): __Observable<__StrictHttpResponse<MvtStkDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/entree`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/entree`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<MvtStkDto>;
       })
@@ -130,7 +145,7 @@ class MvtstkService extends __BaseService {
    */
   entreeStock(body?: MvtStkDto): __Observable<MvtStkDto> {
     return this.entreeStockResponse(body).pipe(
-      __map(_r => _r.body as MvtStkDto)
+      __map((_r) => _r.body as MvtStkDto)
     );
   }
 
@@ -138,23 +153,26 @@ class MvtstkService extends __BaseService {
    * @param idArticle undefined
    * @return successful operation
    */
-  mvtStkArticleResponse(idArticle: number): __Observable<__StrictHttpResponse<Array<MvtStkDto>>> {
+  mvtStkArticleResponse(
+    idArticle: number
+  ): __Observable<__StrictHttpResponse<Array<MvtStkDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/filter/article/${idArticle}`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/filter/article/${idArticle}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<MvtStkDto>>;
       })
@@ -166,7 +184,7 @@ class MvtstkService extends __BaseService {
    */
   mvtStkArticle(idArticle: number): __Observable<Array<MvtStkDto>> {
     return this.mvtStkArticleResponse(idArticle).pipe(
-      __map(_r => _r.body as Array<MvtStkDto>)
+      __map((_r) => _r.body as Array<MvtStkDto>)
     );
   }
 
@@ -174,23 +192,26 @@ class MvtstkService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  sortieStockResponse(body?: MvtStkDto): __Observable<__StrictHttpResponse<MvtStkDto>> {
+  sortieStockResponse(
+    body?: MvtStkDto
+  ): __Observable<__StrictHttpResponse<MvtStkDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/sortie`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/sortie`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<MvtStkDto>;
       })
@@ -202,7 +223,7 @@ class MvtstkService extends __BaseService {
    */
   sortieStock(body?: MvtStkDto): __Observable<MvtStkDto> {
     return this.sortieStockResponse(body).pipe(
-      __map(_r => _r.body as MvtStkDto)
+      __map((_r) => _r.body as MvtStkDto)
     );
   }
 
@@ -210,25 +231,30 @@ class MvtstkService extends __BaseService {
    * @param idArticle undefined
    * @return successful operation
    */
-  stockReelArticleResponse(idArticle: number): __Observable<__StrictHttpResponse<number>> {
+  stockReelArticleResponse(
+    idArticle: number
+  ): __Observable<__StrictHttpResponse<number>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/mvtstk/stockreel/${idArticle}`,
+      this.rootUrl + `/stockmanagement/v1/mvtstk/stockreel/${idArticle}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'text'
-      });
+        responseType: 'text',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
-        return (_r as HttpResponse<any>).clone({ body: parseFloat((_r as HttpResponse<any>).body as string) }) as __StrictHttpResponse<number>
+        return (_r as HttpResponse<any>).clone({
+          body: parseFloat((_r as HttpResponse<any>).body as string),
+        }) as __StrictHttpResponse<number>;
       })
     );
   }
@@ -238,12 +264,11 @@ class MvtstkService extends __BaseService {
    */
   stockReelArticle(idArticle: number): __Observable<number> {
     return this.stockReelArticleResponse(idArticle).pipe(
-      __map(_r => _r.body as number)
+      __map((_r) => _r.body as number)
     );
   }
 }
 
-module MvtstkService {
-}
+module MvtstkService {}
 
-export { MvtstkService }
+export { MvtstkService };

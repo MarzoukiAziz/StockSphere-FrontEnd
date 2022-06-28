@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gestion-de-stock": {
+    "stock-sphere-frontEnd": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,16 +20,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gestion-de-stock",
+            "outputPath": "dist/stock-sphere-frontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -73,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gestion-de-stock:build"
+            "browserTarget": "stock-sphere-frontEnd:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gestion-de-stock:build:production"
+              "browserTarget": "stock-sphere-frontEnd:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestion-de-stock:build"
+            "browserTarget": "stock-sphere-frontEnd:build"
           }
         },
         "test": {
@@ -94,10 +91,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css"
@@ -116,25 +110,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "gestion-de-stock:serve"
+            "devServerTarget": "stock-sphere-frontEnd:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "gestion-de-stock:serve:production"
+              "devServerTarget": "stock-sphere-frontEnd:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "gestion-de-stock"
+  "defaultProject": "stock-sphere-frontEnd"
 }

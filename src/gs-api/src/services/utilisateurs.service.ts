@@ -1,6 +1,11 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
@@ -13,17 +18,18 @@ import { ChangerMotDePasseUtilisateurDto } from '../models/changer-mot-de-passe-
   providedIn: 'root',
 })
 class UtilisateursService extends __BaseService {
-  static readonly findAllPath = '/gestiondestock/v1/utilisateurs/all';
-  static readonly savePath = '/gestiondestock/v1/utilisateurs/create';
-  static readonly deletePath = '/gestiondestock/v1/utilisateurs/delete/{idUtilisateur}';
-  static readonly findByEmailPath = '/gestiondestock/v1/utilisateurs/find/{email}';
-  static readonly changerMotDePassePath = '/gestiondestock/v1/utilisateurs/update/password';
-  static readonly findByIdPath = '/gestiondestock/v1/utilisateurs/{idUtilisateur}';
+  static readonly findAllPath = '/stockmanagement/v1/utilisateurs/all';
+  static readonly savePath = '/stockmanagement/v1/utilisateurs/create';
+  static readonly deletePath =
+    '/stockmanagement/v1/utilisateurs/delete/{idUtilisateur}';
+  static readonly findByEmailPath =
+    '/stockmanagement/v1/utilisateurs/find/{email}';
+  static readonly changerMotDePassePath =
+    '/stockmanagement/v1/utilisateurs/update/password';
+  static readonly findByIdPath =
+    '/stockmanagement/v1/utilisateurs/{idUtilisateur}';
 
-  constructor(
-    config: __Configuration,
-    http: HttpClient
-  ) {
+  constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
   }
 
@@ -36,16 +42,17 @@ class UtilisateursService extends __BaseService {
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/all`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/all`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<UtilisateurDto>>;
       })
@@ -56,7 +63,7 @@ class UtilisateursService extends __BaseService {
    */
   findAll(): __Observable<Array<UtilisateurDto>> {
     return this.findAllResponse().pipe(
-      __map(_r => _r.body as Array<UtilisateurDto>)
+      __map((_r) => _r.body as Array<UtilisateurDto>)
     );
   }
 
@@ -64,23 +71,26 @@ class UtilisateursService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  saveResponse(body?: UtilisateurDto): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  saveResponse(
+    body?: UtilisateurDto
+  ): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/create`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/create`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<UtilisateurDto>;
       })
@@ -92,30 +102,33 @@ class UtilisateursService extends __BaseService {
    */
   save(body?: UtilisateurDto): __Observable<UtilisateurDto> {
     return this.saveResponse(body).pipe(
-      __map(_r => _r.body as UtilisateurDto)
+      __map((_r) => _r.body as UtilisateurDto)
     );
   }
 
   /**
    * @param idUtilisateur undefined
    */
-  deleteResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<null>> {
+  deleteResponse(
+    idUtilisateur: number
+  ): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/delete/${idUtilisateur}`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/delete/${idUtilisateur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<null>;
       })
@@ -126,7 +139,7 @@ class UtilisateursService extends __BaseService {
    */
   delete(idUtilisateur: number): __Observable<null> {
     return this.deleteResponse(idUtilisateur).pipe(
-      __map(_r => _r.body as null)
+      __map((_r) => _r.body as null)
     );
   }
 
@@ -134,23 +147,26 @@ class UtilisateursService extends __BaseService {
    * @param email undefined
    * @return successful operation
    */
-  findByEmailResponse(email: string): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  findByEmailResponse(
+    email: string
+  ): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/find/${email}`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/find/${email}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<UtilisateurDto>;
       })
@@ -162,7 +178,7 @@ class UtilisateursService extends __BaseService {
    */
   findByEmail(email: string): __Observable<UtilisateurDto> {
     return this.findByEmailResponse(email).pipe(
-      __map(_r => _r.body as UtilisateurDto)
+      __map((_r) => _r.body as UtilisateurDto)
     );
   }
 
@@ -170,23 +186,26 @@ class UtilisateursService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  changerMotDePasseResponse(body?: ChangerMotDePasseUtilisateurDto): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  changerMotDePasseResponse(
+    body?: ChangerMotDePasseUtilisateurDto
+  ): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/update/password`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/update/password`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<UtilisateurDto>;
       })
@@ -196,9 +215,11 @@ class UtilisateursService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  changerMotDePasse(body?: ChangerMotDePasseUtilisateurDto): __Observable<UtilisateurDto> {
+  changerMotDePasse(
+    body?: ChangerMotDePasseUtilisateurDto
+  ): __Observable<UtilisateurDto> {
     return this.changerMotDePasseResponse(body).pipe(
-      __map(_r => _r.body as UtilisateurDto)
+      __map((_r) => _r.body as UtilisateurDto)
     );
   }
 
@@ -206,23 +227,26 @@ class UtilisateursService extends __BaseService {
    * @param idUtilisateur undefined
    * @return successful operation
    */
-  findByIdResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  findByIdResponse(
+    idUtilisateur: number
+  ): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/utilisateurs/${idUtilisateur}`,
+      this.rootUrl + `/stockmanagement/v1/utilisateurs/${idUtilisateur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<UtilisateurDto>;
       })
@@ -234,12 +258,11 @@ class UtilisateursService extends __BaseService {
    */
   findById(idUtilisateur: number): __Observable<UtilisateurDto> {
     return this.findByIdResponse(idUtilisateur).pipe(
-      __map(_r => _r.body as UtilisateurDto)
+      __map((_r) => _r.body as UtilisateurDto)
     );
   }
 }
 
-module UtilisateursService {
-}
+module UtilisateursService {}
 
-export { UtilisateursService }
+export { UtilisateursService };

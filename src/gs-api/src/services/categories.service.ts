@@ -1,6 +1,11 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
@@ -12,16 +17,15 @@ import { CategoryDto } from '../models/category-dto';
   providedIn: 'root',
 })
 class CategoriesService extends __BaseService {
-  static readonly findAllPath = '/gestiondestock/v1/categories/all';
-  static readonly savePath = '/gestiondestock/v1/categories/create';
-  static readonly deletePath = '/gestiondestock/v1/categories/delete/{idCategory}';
-  static readonly findByCodePath = '/gestiondestock/v1/categories/filter/{codeCategory}';
-  static readonly findByIdPath = '/gestiondestock/v1/categories/{idCategory}';
+  static readonly findAllPath = '/stockmanagement/v1/categories/all';
+  static readonly savePath = '/stockmanagement/v1/categories/create';
+  static readonly deletePath =
+    '/stockmanagement/v1/categories/delete/{idCategory}';
+  static readonly findByCodePath =
+    '/stockmanagement/v1/categories/filter/{codeCategory}';
+  static readonly findByIdPath = '/stockmanagement/v1/categories/{idCategory}';
 
-  constructor(
-    config: __Configuration,
-    http: HttpClient
-  ) {
+  constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
   }
 
@@ -35,16 +39,17 @@ class CategoriesService extends __BaseService {
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/categories/all`,
+      this.rootUrl + `/stockmanagement/v1/categories/all`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<CategoryDto>>;
       })
@@ -56,7 +61,7 @@ class CategoriesService extends __BaseService {
    */
   findAll(): __Observable<Array<CategoryDto>> {
     return this.findAllResponse().pipe(
-      __map(_r => _r.body as Array<CategoryDto>)
+      __map((_r) => _r.body as Array<CategoryDto>)
     );
   }
 
@@ -65,23 +70,26 @@ class CategoriesService extends __BaseService {
    * @param body undefined
    * @return L'objet category cree / modifie
    */
-  saveResponse(body?: CategoryDto): __Observable<__StrictHttpResponse<CategoryDto>> {
+  saveResponse(
+    body?: CategoryDto
+  ): __Observable<__StrictHttpResponse<CategoryDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/categories/create`,
+      this.rootUrl + `/stockmanagement/v1/categories/create`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CategoryDto>;
       })
@@ -93,9 +101,7 @@ class CategoriesService extends __BaseService {
    * @return L'objet category cree / modifie
    */
   save(body?: CategoryDto): __Observable<CategoryDto> {
-    return this.saveResponse(body).pipe(
-      __map(_r => _r.body as CategoryDto)
-    );
+    return this.saveResponse(body).pipe(__map((_r) => _r.body as CategoryDto));
   }
 
   /**
@@ -109,16 +115,17 @@ class CategoriesService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/gestiondestock/v1/categories/delete/${idCategory}`,
+      this.rootUrl + `/stockmanagement/v1/categories/delete/${idCategory}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<null>;
       })
@@ -129,9 +136,7 @@ class CategoriesService extends __BaseService {
    * @param idCategory undefined
    */
   delete(idCategory: number): __Observable<null> {
-    return this.deleteResponse(idCategory).pipe(
-      __map(_r => _r.body as null)
-    );
+    return this.deleteResponse(idCategory).pipe(__map((_r) => _r.body as null));
   }
 
   /**
@@ -139,23 +144,26 @@ class CategoriesService extends __BaseService {
    * @param codeCategory undefined
    * @return L'article a ete trouve dans la BDD
    */
-  findByCodeResponse(codeCategory: string): __Observable<__StrictHttpResponse<CategoryDto>> {
+  findByCodeResponse(
+    codeCategory: string
+  ): __Observable<__StrictHttpResponse<CategoryDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/categories/filter/${codeCategory}`,
+      this.rootUrl + `/stockmanagement/v1/categories/filter/${codeCategory}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CategoryDto>;
       })
@@ -168,7 +176,7 @@ class CategoriesService extends __BaseService {
    */
   findByCode(codeCategory: string): __Observable<CategoryDto> {
     return this.findByCodeResponse(codeCategory).pipe(
-      __map(_r => _r.body as CategoryDto)
+      __map((_r) => _r.body as CategoryDto)
     );
   }
 
@@ -177,23 +185,26 @@ class CategoriesService extends __BaseService {
    * @param idCategory undefined
    * @return La categorie a ete trouve dans la BDD
    */
-  findByIdResponse(idCategory: number): __Observable<__StrictHttpResponse<CategoryDto>> {
+  findByIdResponse(
+    idCategory: number
+  ): __Observable<__StrictHttpResponse<CategoryDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/categories/${idCategory}`,
+      this.rootUrl + `/stockmanagement/v1/categories/${idCategory}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CategoryDto>;
       })
@@ -206,12 +217,11 @@ class CategoriesService extends __BaseService {
    */
   findById(idCategory: number): __Observable<CategoryDto> {
     return this.findByIdResponse(idCategory).pipe(
-      __map(_r => _r.body as CategoryDto)
+      __map((_r) => _r.body as CategoryDto)
     );
   }
 }
 
-module CategoriesService {
-}
+module CategoriesService {}
 
-export { CategoriesService }
+export { CategoriesService };

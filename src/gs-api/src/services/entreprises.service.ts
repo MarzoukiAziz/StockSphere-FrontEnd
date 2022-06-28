@@ -1,6 +1,11 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
@@ -12,15 +17,14 @@ import { EntrepriseDto } from '../models/entreprise-dto';
   providedIn: 'root',
 })
 class EntreprisesService extends __BaseService {
-  static readonly findAllPath = '/gestiondestock/v1/entreprises/all';
-  static readonly savePath = '/gestiondestock/v1/entreprises/create';
-  static readonly deletePath = '/gestiondestock/v1/entreprises/delete/{idEntreprise}';
-  static readonly findByIdPath = '/gestiondestock/v1/entreprises/{idEntreprise}';
+  static readonly findAllPath = '/stockmanagement/v1/entreprises/all';
+  static readonly savePath = '/stockmanagement/v1/entreprises/create';
+  static readonly deletePath =
+    '/stockmanagement/v1/entreprises/delete/{idEntreprise}';
+  static readonly findByIdPath =
+    '/stockmanagement/v1/entreprises/{idEntreprise}';
 
-  constructor(
-    config: __Configuration,
-    http: HttpClient
-  ) {
+  constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
   }
 
@@ -33,16 +37,17 @@ class EntreprisesService extends __BaseService {
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/entreprises/all`,
+      this.rootUrl + `/stockmanagement/v1/entreprises/all`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<EntrepriseDto>>;
       })
@@ -53,7 +58,7 @@ class EntreprisesService extends __BaseService {
    */
   findAll(): __Observable<Array<EntrepriseDto>> {
     return this.findAllResponse().pipe(
-      __map(_r => _r.body as Array<EntrepriseDto>)
+      __map((_r) => _r.body as Array<EntrepriseDto>)
     );
   }
 
@@ -61,23 +66,26 @@ class EntreprisesService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  saveResponse(body?: EntrepriseDto): __Observable<__StrictHttpResponse<EntrepriseDto>> {
+  saveResponse(
+    body?: EntrepriseDto
+  ): __Observable<__StrictHttpResponse<EntrepriseDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/entreprises/create`,
+      this.rootUrl + `/stockmanagement/v1/entreprises/create`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<EntrepriseDto>;
       })
@@ -89,30 +97,33 @@ class EntreprisesService extends __BaseService {
    */
   save(body?: EntrepriseDto): __Observable<EntrepriseDto> {
     return this.saveResponse(body).pipe(
-      __map(_r => _r.body as EntrepriseDto)
+      __map((_r) => _r.body as EntrepriseDto)
     );
   }
 
   /**
    * @param idEntreprise undefined
    */
-  deleteResponse(idEntreprise: number): __Observable<__StrictHttpResponse<null>> {
+  deleteResponse(
+    idEntreprise: number
+  ): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/gestiondestock/v1/entreprises/delete/${idEntreprise}`,
+      this.rootUrl + `/stockmanagement/v1/entreprises/delete/${idEntreprise}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<null>;
       })
@@ -123,7 +134,7 @@ class EntreprisesService extends __BaseService {
    */
   delete(idEntreprise: number): __Observable<null> {
     return this.deleteResponse(idEntreprise).pipe(
-      __map(_r => _r.body as null)
+      __map((_r) => _r.body as null)
     );
   }
 
@@ -131,23 +142,26 @@ class EntreprisesService extends __BaseService {
    * @param idEntreprise undefined
    * @return successful operation
    */
-  findByIdResponse(idEntreprise: number): __Observable<__StrictHttpResponse<EntrepriseDto>> {
+  findByIdResponse(
+    idEntreprise: number
+  ): __Observable<__StrictHttpResponse<EntrepriseDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/entreprises/${idEntreprise}`,
+      this.rootUrl + `/stockmanagement/v1/entreprises/${idEntreprise}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<EntrepriseDto>;
       })
@@ -159,12 +173,11 @@ class EntreprisesService extends __BaseService {
    */
   findById(idEntreprise: number): __Observable<EntrepriseDto> {
     return this.findByIdResponse(idEntreprise).pipe(
-      __map(_r => _r.body as EntrepriseDto)
+      __map((_r) => _r.body as EntrepriseDto)
     );
   }
 }
 
-module EntreprisesService {
-}
+module EntreprisesService {}
 
-export { EntreprisesService }
+export { EntreprisesService };

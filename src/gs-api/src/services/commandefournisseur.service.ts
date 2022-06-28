@@ -1,6 +1,11 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
@@ -13,44 +18,53 @@ import { LigneCommandeFournisseurDto } from '../models/ligne-commande-fournisseu
   providedIn: 'root',
 })
 class CommandefournisseurService extends __BaseService {
-  static readonly findAllPath = '/gestiondestock/v1/commandesfournisseurs/all';
-  static readonly savePath = '/gestiondestock/v1/commandesfournisseurs/create';
-  static readonly deleteArticlePath = '/gestiondestock/v1/commandesfournisseurs/delete/article/{idCommande}/{idLigneCommande}';
-  static readonly deletePath = '/gestiondestock/v1/commandesfournisseurs/delete/{idCommandeFournisseur}';
-  static readonly findByCodePath = '/gestiondestock/v1/commandesfournisseurs/filter/{codeCommandeFournisseur}';
-  static readonly findAllLignesCommandesFournisseurByCommandeFournisseurIdPath = '/gestiondestock/v1/commandesfournisseurs/lignesCommande/{idCommande}';
-  static readonly updateArticlePath = '/gestiondestock/v1/commandesfournisseurs/update/article/{idCommande}/{idLigneCommande}/{idArticle}';
-  static readonly updateEtatCommandePath = '/gestiondestock/v1/commandesfournisseurs/update/etat/{idCommande}/{etatCommande}';
-  static readonly updateFournisseurPath = '/gestiondestock/v1/commandesfournisseurs/update/fournisseur/{idCommande}/{idFournisseur}';
-  static readonly updateQuantiteCommandePath = '/gestiondestock/v1/commandesfournisseurs/update/quantite/{idCommande}/{idLigneCommande}/{quantite}';
-  static readonly findByIdPath = '/gestiondestock/v1/commandesfournisseurs/{idCommandeFournisseur}';
+  static readonly findAllPath = '/stockmanagement/v1/commandesfournisseurs/all';
+  static readonly savePath = '/stockmanagement/v1/commandesfournisseurs/create';
+  static readonly deleteArticlePath =
+    '/stockmanagement/v1/commandesfournisseurs/delete/article/{idCommande}/{idLigneCommande}';
+  static readonly deletePath =
+    '/stockmanagement/v1/commandesfournisseurs/delete/{idCommandeFournisseur}';
+  static readonly findByCodePath =
+    '/stockmanagement/v1/commandesfournisseurs/filter/{codeCommandeFournisseur}';
+  static readonly findAllLignesCommandesFournisseurByCommandeFournisseurIdPath =
+    '/stockmanagement/v1/commandesfournisseurs/lignesCommande/{idCommande}';
+  static readonly updateArticlePath =
+    '/stockmanagement/v1/commandesfournisseurs/update/article/{idCommande}/{idLigneCommande}/{idArticle}';
+  static readonly updateEtatCommandePath =
+    '/stockmanagement/v1/commandesfournisseurs/update/etat/{idCommande}/{etatCommande}';
+  static readonly updateFournisseurPath =
+    '/stockmanagement/v1/commandesfournisseurs/update/fournisseur/{idCommande}/{idFournisseur}';
+  static readonly updateQuantiteCommandePath =
+    '/stockmanagement/v1/commandesfournisseurs/update/quantite/{idCommande}/{idLigneCommande}/{quantite}';
+  static readonly findByIdPath =
+    '/stockmanagement/v1/commandesfournisseurs/{idCommandeFournisseur}';
 
-  constructor(
-    config: __Configuration,
-    http: HttpClient
-  ) {
+  constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
   }
 
   /**
    * @return successful operation
    */
-  findAllResponse(): __Observable<__StrictHttpResponse<Array<CommandeFournisseurDto>>> {
+  findAllResponse(): __Observable<
+    __StrictHttpResponse<Array<CommandeFournisseurDto>>
+  > {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/all`,
+      this.rootUrl + `/stockmanagement/v1/commandesfournisseurs/all`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<CommandeFournisseurDto>>;
       })
@@ -61,7 +75,7 @@ class CommandefournisseurService extends __BaseService {
    */
   findAll(): __Observable<Array<CommandeFournisseurDto>> {
     return this.findAllResponse().pipe(
-      __map(_r => _r.body as Array<CommandeFournisseurDto>)
+      __map((_r) => _r.body as Array<CommandeFournisseurDto>)
     );
   }
 
@@ -69,23 +83,26 @@ class CommandefournisseurService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  saveResponse(body?: CommandeFournisseurDto): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  saveResponse(
+    body?: CommandeFournisseurDto
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = body;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/create`,
+      this.rootUrl + `/stockmanagement/v1/commandesfournisseurs/create`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -97,7 +114,7 @@ class CommandefournisseurService extends __BaseService {
    */
   save(body?: CommandeFournisseurDto): __Observable<CommandeFournisseurDto> {
     return this.saveResponse(body).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -110,24 +127,27 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  deleteArticleResponse(params: CommandefournisseurService.DeleteArticleParams): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  deleteArticleResponse(
+    params: CommandefournisseurService.DeleteArticleParams
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/delete/article/${params.idCommande}/${params.idLigneCommande}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/delete/article/${params.idCommande}/${params.idLigneCommande}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -142,32 +162,38 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  deleteArticle(params: CommandefournisseurService.DeleteArticleParams): __Observable<CommandeFournisseurDto> {
+  deleteArticle(
+    params: CommandefournisseurService.DeleteArticleParams
+  ): __Observable<CommandeFournisseurDto> {
     return this.deleteArticleResponse(params).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
   /**
    * @param idCommandeFournisseur undefined
    */
-  deleteResponse(idCommandeFournisseur: number): __Observable<__StrictHttpResponse<null>> {
+  deleteResponse(
+    idCommandeFournisseur: number
+  ): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/delete/${idCommandeFournisseur}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/delete/${idCommandeFournisseur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<null>;
       })
@@ -178,7 +204,7 @@ class CommandefournisseurService extends __BaseService {
    */
   delete(idCommandeFournisseur: number): __Observable<null> {
     return this.deleteResponse(idCommandeFournisseur).pipe(
-      __map(_r => _r.body as null)
+      __map((_r) => _r.body as null)
     );
   }
 
@@ -186,23 +212,27 @@ class CommandefournisseurService extends __BaseService {
    * @param codeCommandeFournisseur undefined
    * @return successful operation
    */
-  findByCodeResponse(codeCommandeFournisseur: string): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  findByCodeResponse(
+    codeCommandeFournisseur: string
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/filter/${codeCommandeFournisseur}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/filter/${codeCommandeFournisseur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -212,9 +242,11 @@ class CommandefournisseurService extends __BaseService {
    * @param codeCommandeFournisseur undefined
    * @return successful operation
    */
-  findByCode(codeCommandeFournisseur: string): __Observable<CommandeFournisseurDto> {
+  findByCode(
+    codeCommandeFournisseur: string
+  ): __Observable<CommandeFournisseurDto> {
     return this.findByCodeResponse(codeCommandeFournisseur).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -222,23 +254,27 @@ class CommandefournisseurService extends __BaseService {
    * @param idCommande undefined
    * @return successful operation
    */
-  findAllLignesCommandesFournisseurByCommandeFournisseurIdResponse(idCommande: number): __Observable<__StrictHttpResponse<Array<LigneCommandeFournisseurDto>>> {
+  findAllLignesCommandesFournisseurByCommandeFournisseurIdResponse(
+    idCommande: number
+  ): __Observable<__StrictHttpResponse<Array<LigneCommandeFournisseurDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/lignesCommande/${idCommande}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/lignesCommande/${idCommande}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<Array<LigneCommandeFournisseurDto>>;
       })
@@ -248,10 +284,12 @@ class CommandefournisseurService extends __BaseService {
    * @param idCommande undefined
    * @return successful operation
    */
-  findAllLignesCommandesFournisseurByCommandeFournisseurId(idCommande: number): __Observable<Array<LigneCommandeFournisseurDto>> {
-    return this.findAllLignesCommandesFournisseurByCommandeFournisseurIdResponse(idCommande).pipe(
-      __map(_r => _r.body as Array<LigneCommandeFournisseurDto>)
-    );
+  findAllLignesCommandesFournisseurByCommandeFournisseurId(
+    idCommande: number
+  ): __Observable<Array<LigneCommandeFournisseurDto>> {
+    return this.findAllLignesCommandesFournisseurByCommandeFournisseurIdResponse(
+      idCommande
+    ).pipe(__map((_r) => _r.body as Array<LigneCommandeFournisseurDto>));
   }
 
   /**
@@ -265,25 +303,27 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateArticleResponse(params: CommandefournisseurService.UpdateArticleParams): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  updateArticleResponse(
+    params: CommandefournisseurService.UpdateArticleParams
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-
-
     let req = new HttpRequest<any>(
       'PATCH',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/update/article/${params.idCommande}/${params.idLigneCommande}/${params.idArticle}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/update/article/${params.idCommande}/${params.idLigneCommande}/${params.idArticle}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -300,9 +340,11 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateArticle(params: CommandefournisseurService.UpdateArticleParams): __Observable<CommandeFournisseurDto> {
+  updateArticle(
+    params: CommandefournisseurService.UpdateArticleParams
+  ): __Observable<CommandeFournisseurDto> {
     return this.updateArticleResponse(params).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -315,24 +357,27 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateEtatCommandeResponse(params: CommandefournisseurService.UpdateEtatCommandeParams): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  updateEtatCommandeResponse(
+    params: CommandefournisseurService.UpdateEtatCommandeParams
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-
     let req = new HttpRequest<any>(
       'PATCH',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/update/etat/${params.idCommande}/${params.etatCommande}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/update/etat/${params.idCommande}/${params.etatCommande}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -347,9 +392,11 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateEtatCommande(params: CommandefournisseurService.UpdateEtatCommandeParams): __Observable<CommandeFournisseurDto> {
+  updateEtatCommande(
+    params: CommandefournisseurService.UpdateEtatCommandeParams
+  ): __Observable<CommandeFournisseurDto> {
     return this.updateEtatCommandeResponse(params).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -362,24 +409,27 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateFournisseurResponse(params: CommandefournisseurService.UpdateFournisseurParams): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  updateFournisseurResponse(
+    params: CommandefournisseurService.UpdateFournisseurParams
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-
     let req = new HttpRequest<any>(
       'PATCH',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/update/fournisseur/${params.idCommande}/${params.idFournisseur}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/update/fournisseur/${params.idCommande}/${params.idFournisseur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -394,9 +444,11 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateFournisseur(params: CommandefournisseurService.UpdateFournisseurParams): __Observable<CommandeFournisseurDto> {
+  updateFournisseur(
+    params: CommandefournisseurService.UpdateFournisseurParams
+  ): __Observable<CommandeFournisseurDto> {
     return this.updateFournisseurResponse(params).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -411,25 +463,27 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateQuantiteCommandeResponse(params: CommandefournisseurService.UpdateQuantiteCommandeParams): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  updateQuantiteCommandeResponse(
+    params: CommandefournisseurService.UpdateQuantiteCommandeParams
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-
-
     let req = new HttpRequest<any>(
       'PATCH',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/update/quantite/${params.idCommande}/${params.idLigneCommande}/${params.quantite}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/update/quantite/${params.idCommande}/${params.idLigneCommande}/${params.quantite}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -446,9 +500,11 @@ class CommandefournisseurService extends __BaseService {
    *
    * @return successful operation
    */
-  updateQuantiteCommande(params: CommandefournisseurService.UpdateQuantiteCommandeParams): __Observable<CommandeFournisseurDto> {
+  updateQuantiteCommande(
+    params: CommandefournisseurService.UpdateQuantiteCommandeParams
+  ): __Observable<CommandeFournisseurDto> {
     return this.updateQuantiteCommandeResponse(params).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 
@@ -456,23 +512,27 @@ class CommandefournisseurService extends __BaseService {
    * @param idCommandeFournisseur undefined
    * @return successful operation
    */
-  findByIdResponse(idCommandeFournisseur: number): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
+  findByIdResponse(
+    idCommandeFournisseur: number
+  ): __Observable<__StrictHttpResponse<CommandeFournisseurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock/v1/commandesfournisseurs/${idCommandeFournisseur}`,
+      this.rootUrl +
+        `/stockmanagement/v1/commandesfournisseurs/${idCommandeFournisseur}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
-      });
+        responseType: 'json',
+      }
+    );
 
     return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
+      __filter((_r) => _r instanceof HttpResponse),
       __map((_r) => {
         return _r as __StrictHttpResponse<CommandeFournisseurDto>;
       })
@@ -482,15 +542,16 @@ class CommandefournisseurService extends __BaseService {
    * @param idCommandeFournisseur undefined
    * @return successful operation
    */
-  findById(idCommandeFournisseur: number): __Observable<CommandeFournisseurDto> {
+  findById(
+    idCommandeFournisseur: number
+  ): __Observable<CommandeFournisseurDto> {
     return this.findByIdResponse(idCommandeFournisseur).pipe(
-      __map(_r => _r.body as CommandeFournisseurDto)
+      __map((_r) => _r.body as CommandeFournisseurDto)
     );
   }
 }
 
 module CommandefournisseurService {
-
   /**
    * Parameters for deleteArticle
    */
@@ -534,4 +595,4 @@ module CommandefournisseurService {
   }
 }
 
-export { CommandefournisseurService }
+export { CommandefournisseurService };
